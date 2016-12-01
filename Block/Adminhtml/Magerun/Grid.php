@@ -205,6 +205,44 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 
 		/*{{CedAddGridColumn}}*/
 
+        $this->addColumn('action_edit',
+            array(
+                'header' => 'Action',
+                'width' => '100',
+                'type' => 'action',
+                'getter' => 'getId',
+                'actions' => array(
+                    array(
+                        'caption' => 'Edit',
+                        'url' => array('base' => 'magerun/*/edit'),
+                        'field' => 'id'
+                    )
+                ),
+                'filter' => false,
+                'sortable' => false,
+                'index' => 'stores',
+                'is_system' => true,
+            ));
+
+        $this->addColumn('action_run',
+            array(
+                'header' => 'Action',
+                'width' => '100',
+                'type' => 'action',
+                'getter' => 'getId',
+                'actions' => array(
+                    array(
+                        'caption' => 'Run',
+                        'url' => array('base' => 'magerun/*/run'),
+                        'field' => 'id'
+                    )
+                ),
+                'filter' => false,
+                'sortable' => false,
+                'index' => 'stores',
+                'is_system' => true,
+            ));
+
         $block = $this->getLayout()->getBlock('grid.bottom.links');
         if ($block) {
             $this->setChild('grid.bottom.links', $block);
@@ -229,6 +267,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'confirm' => __('Are you sure?')
             )
         );
+
         return $this;
     }
 

@@ -1,0 +1,36 @@
+<?php
+    $header_title = $block->getHeaderTitle();
+    $result_output = $block->getResultOutput();
+?>
+<div id="magerun-output" style="display: none">
+    <pre><code class="code bash"><?php echo __($result_output) ?></code></pre>
+</div>
+<script>
+    require(['Smart_Magerun/js/highlight.min'], function(hljs) {
+        hljs.initHighlightingOnLoad();
+    });
+</script>
+<script>
+    require([
+   'jquery',
+   'jquery/ui',
+   'Magento_Ui/js/modal/modal'
+], function($){
+    var result_output = $('#magerun-output .code').text();
+    if (result_output != '') {
+        $('#magerun-output .code').modal({
+           title: 'The result output',
+           autoOpen: true,
+           buttons: [{
+               text: 'Confirm',
+               attr: {
+                   'data-action': 'confirm'
+               },
+               'class': 'action-primary'
+           }]
+        });
+    }
+
+});
+</script>
+<?php $block->flushResultOutput(); ?>
