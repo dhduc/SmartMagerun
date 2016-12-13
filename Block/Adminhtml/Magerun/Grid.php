@@ -241,6 +241,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'sortable' => false,
                 'index' => 'stores',
                 'is_system' => true,
+                'renderer' => 'Smart\Magerun\Block\Adminhtml\Magerun\Grid\Column\Renderer\Run'
             ));
 
         $block = $this->getLayout()->getBlock('grid.bottom.links');

@@ -6,8 +6,7 @@
 var config = {
     map: {
         "*": {
-            "prism": "Smart_Magerun/js/prism",
-            "highlight": "Smart_Magerun/js/highlight.min"
+            "prism": "Smart_Magerun/js/prism"
         }
     }
 };

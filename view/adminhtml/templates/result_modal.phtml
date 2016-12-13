@@ -3,17 +3,14 @@
     $result_output = $block->getResultOutput();
 ?>
 <div id="magerun-output" style="display: none">
-    <pre><code class="code bash"><?php echo __($result_output) ?></code></pre>
+    <pre><code class="code language-bash"><?php echo __($result_output) ?></code></pre>
 </div>
 <script>
     require([
    'jquery',
    'jquery/ui',
-   'Magento_Ui/js/modal/modal',
-   'highlight'
-], function($, ui, modal, hljs){
-    // Set highlight result
-    hljs.initHighlightingOnLoad();
+   'Magento_Ui/js/modal/modal'
+], function($){
     // Active modal popup
     var result_output = $('#magerun-output .code').text();
     if (result_output != '') {
