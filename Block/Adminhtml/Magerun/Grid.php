@@ -157,7 +157,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 		$this->addColumn(
             'title',
             [
-                'header' => __('title'),
+                'header' => __('Title'),
                 'index' => 'title',
                 'class' => 'title'
             ]
@@ -165,7 +165,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 		$this->addColumn(
             'command',
             [
-                'header' => __('command'),
+                'header' => __('Command'),
                 'index' => 'command',
                 'class' => 'command'
             ]
@@ -173,7 +173,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 		$this->addColumn(
             'option',
             [
-                'header' => __('option'),
+                'header' => __('Option'),
                 'index' => 'option',
                 'class' => 'option'
             ]
@@ -181,7 +181,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 		$this->addColumn(
             'describe',
             [
-                'header' => __('describe'),
+                'header' => __('Describe'),
                 'index' => 'describe',
                 'class' => 'describe'
             ]
@@ -189,7 +189,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 		$this->addColumn(
             'status',
             [
-                'header' => __('status'),
+                'header' => __('Status'),
                 'index' => 'status',
                 'class' => 'status'
             ]
@@ -197,7 +197,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 		$this->addColumn(
             'running_at',
             [
-                'header' => __('running_at'),
+                'header' => __('Running'),
                 'index' => 'running_at',
                 'type' => 'date',
             ]

@@ -6,16 +6,15 @@
     <pre><code class="code bash"><?php echo __($result_output) ?></code></pre>
 </div>
 <script>
-    require(['Smart_Magerun/js/highlight.min'], function(hljs) {
-        hljs.initHighlightingOnLoad();
-    });
-</script>
-<script>
     require([
    'jquery',
    'jquery/ui',
-   'Magento_Ui/js/modal/modal'
-], function($){
+   'Magento_Ui/js/modal/modal',
+   'highlight'
+], function($, ui, modal, hljs){
+    // Set highlight result
+    hljs.initHighlightingOnLoad();
+    // Active modal popup
     var result_output = $('#magerun-output .code').text();
     if (result_output != '') {
         $('#magerun-output .code').modal({
@@ -30,7 +29,6 @@
            }]
         });
     }
-
 });
 </script>
 <?php $block->flushResultOutput(); ?>

@@ -1,12 +1,16 @@
 <?php
 
-namespace code\Smart\Magerun\Setup;
+namespace Smart\Magerun\Setup;
+
+use Magento\Framework\Setup\InstallDataInterface;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\ModuleContextInterface;
 
 /**
  * Class InstallData
- * @package code\Smart\Magerun\Setup
+ * @package Smart\Magerun\Setup
  */
-class InstallData
+class InstallData implements InstallDataInterface
 {
     protected $itemsFactory;
 
@@ -17,6 +21,10 @@ class InstallData
         $this->itemsFactory = $itemsFactory;
     }
 
+    /**
+     * @param ModuleDataSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
         $data = [
@@ -70,8 +78,11 @@ class InstallData
             ],
         ];
 
-        $item = $this->itemsFactory->create();
+        foreach ($data as $item) {
+            $model = $this->itemsFactory->create();
+            $model->addData($item);
+            $model->save();
+        }
 
-        $item->addData($data)->save();
     }
 }

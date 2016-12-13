@@ -4,7 +4,7 @@
  */
 
 var config = {
-    "map": {
+    map: {
         "*": {
             "prism": "Smart_Magerun/js/prism",
             "highlight": "Smart_Magerun/js/highlight.min"
