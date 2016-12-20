@@ -1,5 +1,5 @@
 {
-    "name": "smart/magerun",
+    "name": "ducdh/magerun",
     "description": "Smart Magerun administrator tool for Magento 2",
     "homepage": "git@github.com:dhduc/SmartMagerun.git",
     "authors": [
@@ -21,7 +21,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magento\\ExternalLinks\\": ""
+            "Smart\\Magerun\\": ""
         }
     }
 }
