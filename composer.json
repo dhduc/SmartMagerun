@@ -1,7 +1,7 @@
 {
     "name": "ducdh/magerun",
     "description": "Smart Magerun administrator tool for Magento 2",
-    "homepage": "git@github.com:dhduc/SmartMagerun.git",
+    "homepage": "https://github.com/dhduc/SmartMagerun.git",
     "authors": [
         {
             "name": "Duc Dao",
@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "~5.6.0|7.0.2|~7.0.6"
+        "php": ">=5.6,<=7.0"
     },
     "type": "magento2-module",
     "version": "dev-master",
