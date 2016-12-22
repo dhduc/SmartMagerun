@@ -9,7 +9,7 @@ Making the deploying more convenient with Magento 2 site.
 
 ## Feature
 
-* Execute shell command CLI directly 
+* Execute shell command CLI directly in Admin
 
 ## Installation with Composer
 
@@ -29,12 +29,13 @@ php bin/magento setup:static-content:deploy
 * Go to project home directory and execute these commands
 
 ```
+php bin/magento module:enable Smart_Magerun
 php bin/magento setup:upgrade
 php bin/magento setup:static-content:deploy
 ```
 ## Usage
 
-To execute command go to Stores --> Configuration --> Magerun --> Tasks
+To execute command go to System --> Magerun --> Task
 
 ![Smart_Magerun](docs/main.png "Main")
 
