@@ -1,10 +1,10 @@
 <?php
 namespace Smart\Magerun\Controller\Adminhtml\MagerunGrid;
-use Magento\Backend\App\Action;
-class NewAction extends \Magento\Backend\App\Action
+
+class NewAction extends \Smart\Magerun\Controller\Adminhtml\AbstractAction
 {
-     public function execute()
+    public function execute()
     {
-		$this->_forward('edit');
+        $this->_forward('edit');
     }
 }

@@ -1,27 +1,22 @@
 <?php
 namespace Smart\Magerun\Controller\Adminhtml\MagerunGrid;
 
-class Edit extends \Magento\Backend\App\Action
+class Edit extends \Smart\Magerun\Controller\Adminhtml\AbstractAction
 {
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-	public function execute()
+    public function execute()
     {
-		
-		
-		// 1. Get ID and create model
+        // 1. Get ID and create model
         $id = $this->getRequest()->getParam('id');
-		
+
         $model = $this->_objectManager->create('Smart\Magerun\Model\Magerun');
-		
-		$registryObject = $this->_objectManager->get('Magento\Framework\Registry');
-		
+
+        $registryObject = $this->_objectManager->get('Magento\Framework\Registry');
+
         // 2. Initial checking
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
-                $this->messageManager->addError(__('This row no longer exists.'));
+                $this->messageManager->addErrorMessage(__('This row no longer exists.'));
                 $this->_redirect('*/*/');
                 return;
             }
@@ -31,8 +26,8 @@ class Edit extends \Magento\Backend\App\Action
         if (!empty($data)) {
             $model->setData($data);
         }
-		$registryObject->register('magerun_magerun', $model);
-		$this->_view->loadLayout();
+        $registryObject->register('magerun_magerun', $model);
+        $this->_view->loadLayout();
         $this->_view->getLayout()->initMessages();
         $this->_view->renderLayout();
     }

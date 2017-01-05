@@ -28,7 +28,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      * @var \Magento\Catalog\Model\Product\Attribute\Source\Status
      */
     protected $_status;
-	protected $_collectionFactory;
+    protected $_collectionFactory;
 
     /**
      * @var \Magento\Catalog\Model\Product\Visibility
@@ -58,12 +58,12 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
         \Magento\Store\Model\WebsiteFactory $websiteFactory,
-		\Smart\Magerun\Model\ResourceModel\Magerun\Collection $collectionFactory,
+        \Smart\Magerun\Model\ResourceModel\Magerun\Collection $collectionFactory,
         \Magento\Framework\Module\Manager $moduleManager,
         array $data = []
     ) {
-		
-		$this->_collectionFactory = $collectionFactory;
+
+        $this->_collectionFactory = $collectionFactory;
         $this->_websiteFactory = $websiteFactory;
         $this->moduleManager = $moduleManager;
         parent::__construct($context, $backendHelper, $data);
@@ -75,13 +75,13 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     protected function _construct()
     {
         parent::_construct();
-		
+
         $this->setId('productGrid');
         $this->setDefaultSort('id');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
         $this->setUseAjax(false);
-       
+
     }
 
     /**
@@ -98,23 +98,9 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     protected function _prepareCollection()
     {
-		try{
-			
-			
-			$collection =$this->_collectionFactory->load();
-
-		  
-
-			$this->setCollection($collection);
-
-			parent::_prepareCollection();
-		  
-			return $this;
-		}
-		catch(Exception $e)
-		{
-			echo $e->getMessage();die;
-		}
+        $collection = $this->_collectionFactory->load();
+        $this->setCollection($collection);
+        parent::_prepareCollection();
     }
 
     /**
@@ -154,7 +140,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'column_css_class' => 'col-id'
             ]
         );
-		$this->addColumn(
+        $this->addColumn(
             'title',
             [
                 'header' => __('Title'),
@@ -162,7 +148,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'class' => 'title'
             ]
         );
-		$this->addColumn(
+        $this->addColumn(
             'command',
             [
                 'header' => __('Command'),
@@ -170,7 +156,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'class' => 'command'
             ]
         );
-		$this->addColumn(
+        $this->addColumn(
             'option',
             [
                 'header' => __('Option'),
@@ -178,7 +164,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'class' => 'option'
             ]
         );
-		$this->addColumn(
+        $this->addColumn(
             'describe',
             [
                 'header' => __('Describe'),
@@ -186,7 +172,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'class' => 'describe'
             ]
         );
-		$this->addColumn(
+        $this->addColumn(
             'status',
             [
                 'header' => __('Status'),
@@ -194,16 +180,16 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'class' => 'status'
             ]
         );
-		$this->addColumn(
+        $this->addColumn(
             'running_at',
             [
-                'header' => __('Running'),
+                'header' => __('Last Run'),
                 'index' => 'running_at',
-                'type' => 'date',
+                'type' => 'datetime',
             ]
         );
 
-		/*{{CedAddGridColumn}}*/
+        /*{{CedAddGridColumn}}*/
 
         $this->addColumn('action_edit',
             array(
@@ -252,7 +238,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         return parent::_prepareColumns();
     }
 
-     /**
+    /**
      * @return $this
      */
     protected function _prepareMassaction()

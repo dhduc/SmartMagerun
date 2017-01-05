@@ -1,9 +1,6 @@
 <?php
 namespace Smart\Magerun\Block\Adminhtml\Magerun;
 
-/**
- * CMS block edit form container
- */
 class Edit extends \Magento\Backend\Block\Widget\Form\Container
 {
     protected function _construct()
@@ -14,8 +11,8 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
 
         parent::_construct();
 
-        $this->buttonList->update('save', 'label', __('Save Block'));
-        $this->buttonList->update('delete', 'label', __('Delete Block'));
+        $this->buttonList->update('save', 'label', __('Save Command'));
+        $this->buttonList->update('delete', 'label', __('Delete'));
 
         $this->buttonList->add(
             'saveandcontinue',

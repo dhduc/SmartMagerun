@@ -1,38 +1,13 @@
 <?php
 namespace Smart\Magerun\Controller\Adminhtml\MagerunGrid;
-use Magento\Framework\App\Filesystem\DirectoryList;
-class Save extends \Magento\Backend\App\Action
+
+class Save extends \Smart\Magerun\Controller\Adminhtml\AbstractAction
 {
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
 	public function execute()
     {
-		
         $data = $this->getRequest()->getParams();
         if ($data) {
             $model = $this->_objectManager->create('Smart\Magerun\Model\Magerun');
-		
-            /* if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
-				try {
-					    $uploader = $this->_objectManager->create('Magento\Core\Model\File\Uploader', array('fileId' => 'image'));
-						$uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
-						$uploader->setAllowRenameFiles(true);
-						$uploader->setFilesDispersion(true);
-						$mediaDirectory = $this->_objectManager->get('Magento\Framework\Filesystem')
-							->getDirectoryRead(DirectoryList::MEDIA);
-						$config = $this->_objectManager->get('Magento\Bannerslider\Model\Banner');
-						$result = $uploader->save($mediaDirectory->getAbsolutePath('bannerslider/images'));
-						unset($result['tmp_name']);
-						unset($result['path']);
-						$data['image'] = $result['file'];
-				} catch (Exception $e) {
-					$data['image'] = $_FILES['image']['name'];
-				}
-			}
-			else{
-				$data['image'] = $data['image']['value'];
-			} */
 			$id = $this->getRequest()->getParam('id');
             if ($id) {
                 $model->load($id);
@@ -42,7 +17,7 @@ class Save extends \Magento\Backend\App\Action
 			
             try {
                 $model->save();
-                $this->messageManager->addSuccess(__('The Frist Grid Has been Saved.'));
+                $this->messageManager->addSuccessMessage(__('The Frist Grid Has been Saved.'));
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
                     $this->_redirect('*/*/edit', array('id' => $model->getId(), '_current' => true));
@@ -50,12 +25,10 @@ class Save extends \Magento\Backend\App\Action
                 }
                 $this->_redirect('*/*/');
                 return;
-            } catch (\Magento\Framework\Model\Exception $e) {
-                $this->messageManager->addError($e->getMessage());
             } catch (\RuntimeException $e) {
-                $this->messageManager->addError($e->getMessage());
+                $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the banner.'));
+                $this->messageManager->addErrorMessage($e, __('Something went wrong while saving the banner.'));
             }
 
             $this->_getSession()->setFormData($data);
