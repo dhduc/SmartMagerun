@@ -5,22 +5,8 @@ namespace Smart\Magerun\Controller\Adminhtml\MagerunGrid;
  * Class Run
  * @package Smart\Magerun\Controller\Adminhtml\MagerunGrid
  */
-class Run extends \Magento\Backend\App\Action
+class Run extends \Smart\Magerun\Controller\Adminhtml\AbstractAction
 {
-    public $registry;
-    public $catalogSession;
-    public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Catalog\Model\Session $catalogSession
-    ) {
-        $this->registry = $registry;
-        $this->catalogSession = $catalogSession;
-        return parent::__construct($context);
-    }
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
     public function execute()
     {
         $id = $this->getRequest()->getParam('id');
@@ -31,14 +17,17 @@ class Run extends \Magento\Backend\App\Action
         }
 
         try {
+            /** Save the latest try time */
+            $row->setRunningAt(time())->save();
+
             $output = shell_exec($command);
-            $this->registry->register('magerun_output', $output);
-            $this->catalogSession->setData('magerun_output', $output);
-            $this->messageManager->addSuccess(
+            $this->_coreRegistry->register('magerun_output', $output);
+            $this->_catalogSession->setData('magerun_output', $output);
+            $this->messageManager->addSuccessMessage(
                 __('Run command %1 successful', $command)
             );
         } catch (\Exception $e) {
-            $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addErrorMessage($e->getMessage());
         }
 
         $this->_redirect('*/*/');
